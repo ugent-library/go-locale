@@ -10,6 +10,13 @@ type Locale struct {
 	printer *message.Printer
 }
 
-func (l *Locale) Translate(key message.Reference, args ...interface{}) string {
+func (l *Locale) Translate(scope, key string, args ...interface{}) string {
+	if len(scope) > 0 {
+		key = scope + "." + key
+	}
 	return l.printer.Sprintf(key, args...)
+}
+
+func (l *Locale) T(scope, key string, args ...interface{}) string {
+	return l.Translate(scope, key, args...)
 }
