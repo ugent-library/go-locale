@@ -11,7 +11,7 @@ type Locale struct {
 }
 
 func (l *Locale) Translate(scope, key string, args ...interface{}) string {
-	if len(scope) > 0 {
+	if scope != "" {
 		key = scope + "." + key
 	}
 	return l.printer.Sprintf(key, args...)
