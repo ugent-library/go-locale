@@ -2,6 +2,7 @@ package locale
 
 import (
 	"golang.org/x/text/language"
+	"golang.org/x/text/language/display"
 	"golang.org/x/text/message"
 )
 
@@ -18,8 +19,9 @@ func NewLocalizer(langs ...string) *Localizer {
 		tag := language.MustParse(lang)
 		tags[i] = tag
 		locs[i] = &Locale{
-			Tag:     tag,
-			printer: message.NewPrinter(tag),
+			Tag:           tag,
+			printer:       message.NewPrinter(tag),
+			languageNamer: display.Languages(tag),
 		}
 	}
 
