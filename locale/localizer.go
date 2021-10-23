@@ -20,8 +20,8 @@ func NewLocalizer(langs ...string) *Localizer {
 		tags[i] = tag
 		locs[i] = &Locale{
 			Tag:           tag,
-			printer:       message.NewPrinter(tag),
 			languageNamer: display.Languages(tag),
+			printer:       message.NewPrinter(tag),
 		}
 	}
 
